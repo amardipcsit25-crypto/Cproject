@@ -26,38 +26,76 @@ for(j=0;j<3;j++){  // how much time user can try the password
                   break;
                     }
                        else{
-                                printf("NOT MATCH , TRY AGAIN !\n");
+                                printf("INCORRECT, TRY AGAIN !\n");
                                  }
                                      } 
          if(checked==0){   // if user enter wrong password 3 times then access will be denied
-               printf("Permission denied!\n");
+               printf("PERMISSION DENIED!\n");
                   return 1;
                      }
     do{        
     ep=fopen("empdata.txt","r"); // opening file in read mode   
            if(ep==NULL){              //checking file is exist or not
-               printf("File not found");
+             printf("FILE NOT FOUND!");
                       return 0;
                                 }
 //    using the switch   
  printf("1.For highest and lowest salary:\n");
- printf("2.For display employees from the IT department:\n");
+ printf("2.For displaying employees from the IT department:\n");
  printf("3.For employees with salary above the average salary:\n");
- printf("4.For count employees in each department:\n");
- printf("Enter the number between (1 and 4) that you have to explain:");
+ printf("4.For counting employees in each department:\n");
+ printf("Enter a number (between 1-4):");
  scanf("%d",&number);
   switch(number){
     case 1:
          for (i=0;i<24;i++){  
               fscanf(ep,"%d %s %s %d %ld %s",&emp[i].emp_id,emp[i].emp_name,emp[i].emp_gender,&emp[i].emp_age,&emp[i].salary,&emp[i].emp_department); 
                }
-                   printf("for highest and lowest salary");
-                      printf("\n");
+                 // FIND HIGHEST AND LOWEST SALARY //
+int max = 0, min = 0;
+
+for(i=1;i<24;i++){
+    if(emp[i].salary > emp[max].salary){
+        max = i;
+    }
+    if(emp[i].salary < emp[min].salary){
+        min = i;
+    }
+}
+
+printf("\nHIGHEST SALARY EMPLOYEE:\n");
+printf("ID=%d\n",emp[max].emp_id);
+printf("NAME=%s\n",emp[max].emp_name);
+printf("GENDER=%s\n",emp[max].emp_gender);
+printf("AGE=%d\n",emp[max].emp_age);
+printf("DEPARTMENT=%s\n",emp[max].emp_department);
+printf("SALARY=%ld\n",emp[max].salary);
+
+printf("\nLOWEST SALARY EMPLOYEE:\n");
+printf("ID=%d\n",emp[min].emp_id);
+printf("NAME=%s\n",emp[min].emp_name);
+printf("GENDER=%s\n",emp[min].emp_gender);
+printf("AGE=%d\n",emp[min].emp_age);
+printf("DEPARTMENT=%s\n",emp[min].emp_department);
+printf("SALARY=%ld\n",emp[min].salary);
+ printf("\n");    // to break the line for another input  of switch 
                  break;             // for avoiding unnecessary condition
     case 2 :
          printf("Details of employees from IT department:\n");             
           for (i=0;i<24;i++){     // using loop
              fscanf(ep,"%d %s %s %d %ld %s",&emp[i].emp_id,emp[i].emp_name,emp[i].emp_gender,&emp[i].emp_age,&emp[i].salary,&emp[i].emp_department);  
+          }
+                 if(strcmp(emp[i].emp_department,"IT-Support")==0){     //checking for employees details from IT department{
+                    printf("ID=%d\n",emp[i].emp_id);
+                     printf("NAME=%s\n",emp[i].emp_name);
+                       printf("GENDER=%s\n",emp[i].emp_gender);
+                        printf("AGE=%d\n",emp[i].emp_age);
+                         printf("DEPARTMENT=%s\n",emp[i].emp_department);
+                          printf("SALARY=%d\n",emp[i].salary);
+                            printf("\n");
+            
+                             }
+                 
                                 }
                               printf("\n");    // to break the line for another input  of switch 
                                     break;
@@ -89,7 +127,7 @@ for(j=0;j<3;j++){  // how much time user can try the password
                 printf("\n");
             }
         }
-                                  break;
+                      break;
     case 4:
              for (i=0;i<24;i++){  
               fscanf(ep,"%d %s %s %d %ld %s",&emp[i].emp_id,emp[i].emp_name,emp[i].emp_gender,&emp[i].emp_age,&emp[i].salary,&emp[i].emp_department); 
@@ -97,16 +135,55 @@ for(j=0;j<3;j++){  // how much time user can try the password
                   printf("For count employees in each department:");
                     printf("\n");
                                  break;
+             } 
+                    printf("For counting employees in each department:");
+                    printf("\n");
+                    
+                    char software[]="Software-Development";
+                    char network[]="Network-Administration";
+                    char data[]="Data-Management";
+                    char cyber[]="Cybersecurity";
+                    char it[]="IT-Support";
+                    int count_software=0, count_fin=0, count_data=0, count_cyber=0, count_it=0;
+
+                    //Counting number of employees in each department
+                    for(int i = 0; i < 24; i++)
+                    {
+                       if(strcmp(emp[i].emp_department,software)==0){
+                            count_software++;
+                       }
+                      if(strcmp(emp[i].emp_department,network)==0){
+                            count_fin++;
+                        }
+                        if(strcmp(emp[i].emp_department,data)==0){
+                            count_data++;
+                        }
+                        if(strcmp(emp[i].emp_department,cyber)==0){
+                            count_cyber++;
+                        }
+                        if(strcmp(emp[i].emp_department,it)==0){
+                            count_it++;
+                        }
+                    }
+
+                    printf("Number of employees in each department:\n");
+                    printf("%s: %d\n",software,count_software);
+                    printf("%s: %d\n",network,count_fin);
+                    printf("%s: %d\n",data,count_data);
+                    printf("%s: %d\n",cyber,count_cyber);
+                    printf("%s: %d\n",it,count_it);
+    
+                    break;
+  
     default: 
              printf("Invalid number you have enter");  
                  printf("\n");
-                     }
-
-                                               printf("Do you want to continue (y/n): ");
-                                                    scanf(" %c", &c);  // space %c is used to avoid the buffer problem
+                                     printf("Do you want to continue(y/n): ");
+                                           scanf(" %c", &c);  // space %c is used to avoid the buffer problem
                                                      }
-                                                         while(c=='y'||c=='Y');
-                                                        printf(" exit the file ");
+                                                  while(c=='y'||c=='Y');
+                                                   printf("Exiting the program...");
 fclose(ep);  //closing file   
 return 0;
 }
+
