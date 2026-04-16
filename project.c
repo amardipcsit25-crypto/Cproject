@@ -84,7 +84,6 @@ printf("SALARY=%ld\n",emp[min].salary);
          printf("Details of employees from IT department:\n");             
           for (i=0;i<24;i++){     // using loop
              fscanf(ep,"%d %s %s %d %ld %s",&emp[i].emp_id,emp[i].emp_name,emp[i].emp_gender,&emp[i].emp_age,&emp[i].salary,&emp[i].emp_department);  
-          }
                  if(strcmp(emp[i].emp_department,"IT-Support")==0){     //checking for employees details from IT department{
                     printf("ID=%d\n",emp[i].emp_id);
                      printf("NAME=%s\n",emp[i].emp_name);
@@ -131,10 +130,6 @@ printf("SALARY=%ld\n",emp[min].salary);
     case 4:
              for (i=0;i<24;i++){  
               fscanf(ep,"%d %s %s %d %ld %s",&emp[i].emp_id,emp[i].emp_name,emp[i].emp_gender,&emp[i].emp_age,&emp[i].salary,&emp[i].emp_department); 
-               }
-                  printf("For count employees in each department:");
-                    printf("\n");
-                                 break;
              } 
                     printf("For counting employees in each department:");
                     printf("\n");
@@ -178,7 +173,8 @@ printf("SALARY=%ld\n",emp[min].salary);
     default: 
              printf("Invalid number you have enter");  
                  printf("\n");
-                                     printf("Do you want to continue(y/n): ");
+                             }
+                                      printf("Do you want to continue(y/n): ");
                                            scanf(" %c", &c);  // space %c is used to avoid the buffer problem
                                                      }
                                                   while(c=='y'||c=='Y');
