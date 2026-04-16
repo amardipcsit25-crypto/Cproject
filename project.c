@@ -103,12 +103,38 @@ printf("SALARY=%ld\n",emp[min].salary);
             for (i=0;i<24;i++){  
                 fscanf(ep,"%d %s %s %d %ld %s",&emp[i].emp_id,emp[i].emp_name,emp[i].emp_gender,&emp[i].emp_age,&emp[i].salary,&emp[i].emp_department); 
                      }
-                         printf("For employees with salary above average salary:");
-                            printf("\n");
-                                  break;
+                       printf("For employees with salary above the average salary:/n");
+                       
+        long int sum = 0;
+        float avg;
+
+        // calculate sum
+        for(i = 0; i < 24; i++){
+            sum = sum + emp[i].salary;
+        }
+
+        avg = sum / 24.0;
+
+        // display employees above average
+        for(i = 0; i < 24; i++){
+            if(emp[i].salary > avg){
+                printf("ID=%d\n",emp[i].emp_id);
+                printf("NAME=%s\n",emp[i].emp_name);
+                printf("GENDER=%s\n",emp[i].emp_gender);
+                printf("AGE=%d\n",emp[i].emp_age);
+                printf("DEPARTMENT=%s\n",emp[i].emp_department);
+                printf("SALARY=%ld\n",emp[i].salary);
+                printf("\n");
+            }
+        }
+                      break;
     case 4:
              for (i=0;i<24;i++){  
               fscanf(ep,"%d %s %s %d %ld %s",&emp[i].emp_id,emp[i].emp_name,emp[i].emp_gender,&emp[i].emp_age,&emp[i].salary,&emp[i].emp_department); 
+               }
+                  printf("For count employees in each department:");
+                    printf("\n");
+                                 break;
              } 
                     printf("For counting employees in each department:");
                     printf("\n");
@@ -152,7 +178,6 @@ printf("SALARY=%ld\n",emp[min].salary);
     default: 
              printf("Invalid number you have enter");  
                  printf("\n");
-                     }
                                      printf("Do you want to continue(y/n): ");
                                            scanf(" %c", &c);  // space %c is used to avoid the buffer problem
                                                      }
@@ -161,3 +186,4 @@ printf("SALARY=%ld\n",emp[min].salary);
 fclose(ep);  //closing file   
 return 0;
 }
+
