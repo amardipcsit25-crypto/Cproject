@@ -113,17 +113,13 @@ printf("SALARY=%ld\n",emp[min].salary);
         }
 
         avg = sum / 24.0;
-
-        // display employees above average
+        printf("%-15s | %-6s | %-10s | %-5s | %-25s | %-10s\n",    // %-15s indicated the widthe of the character of name and so on
+       "NAME", "ID", "GENDER", "AGE", "DEPARTMENT", "SALARY");
+        //display employees above average
         for(i = 0; i < 24; i++){
             if(emp[i].salary > avg){
-                printf("ID=%d\n",emp[i].emp_id);
-                printf("NAME=%s\n",emp[i].emp_name);
-                printf("GENDER=%s\n",emp[i].emp_gender);
-                printf("AGE=%d\n",emp[i].emp_age);
-                printf("DEPARTMENT=%s\n",emp[i].emp_department);
-                printf("SALARY=%ld\n",emp[i].salary);
-                printf("\n");
+                printf("%-15s | %-6d | %-10s | %-5d | %-25s | %-10ld\n", 
+                emp[i].emp_name, emp[i].emp_id, emp[i].emp_gender, emp[i].emp_age, emp[i].emp_department, emp[i].salary);
             }
         }
                       break;
